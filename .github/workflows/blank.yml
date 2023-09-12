@@ -25,6 +25,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      - name: Start display server
+        run: |
+          sudo apt-get install xvfb
+          Xvfb :99 &
+          echo "DISPLAY=:99" >> $GITHUB_ENV
+
       - name: Setup MATLAB
         # You may pin to the exact commit or the version.
         # uses: matlab-actions/setup-matlab@5b825d0ad4205ef03dc40ba3b24cad22674e9ca3
